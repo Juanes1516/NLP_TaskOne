@@ -1,21 +1,32 @@
 import pandas as pd
 
-## dataset dado por el profesor. Chistes en español (2419)
+# Cargar el dataset dado en formato parquet
 df = pd.read_parquet("hf://datasets/mrm8488/CHISTES_spanish_jokes/data/train-00000-of-00001-b70fa6139e8c3f32.parquet")
 
-print(df.shape)
+# Agregar columnas para la anotación de humor y nivel de gracia en una sola columna para cada miembro
+df["evaluacion_1"] = None  # Primera evaluación (0 si no es humorístico, 1-5 si es humorístico)
+df["evaluacion_2"] = None  # Segunda evaluación
+df["evaluacion_3"] = None  # Tercera evaluación
+
+# Llenar las columnas de tipo de origen y fuente para todas las filas
+df["tipo_origen"] = "dataset-texto"                          # Tipo de contenido: "texto"
+df["fuente"] = "Hugging Face - mrm8488/CHISTES_spanish_jokes"  # Fuente específica con créditos completos
+
+# Verificar el nuevo DataFrame
 print(df.head())
 
-
-### Dataset de memes en Español  almacenado en Kagle (42 chistes)
-# https://www.kaggle.com/datasets/aitzolezeizaramos/txisteak
-
-
+# Guardar el DataFrame actualizado como archivo CSV
+df.to_csv("chistes_spanish_jokes_annotated.csv", index=False)
+print("Archivo CSV guardado como 'chistes_spanish_jokes_annotated.csv'")
 
 
 
 
 
+
+
+
+"""
 import requests
 
 # Tu clave API de YouTube
@@ -60,3 +71,5 @@ try:
         print(f"{entry['start']} - {entry['text']}")
 except Exception as e:
     print(f"No se pudo obtener la transcripción: {e}")
+
+"""
