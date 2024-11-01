@@ -5,7 +5,7 @@ import pandas as pd
 
 client = OpenAI(
     # This is the default and can be omitted
-    api_key= "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",
+    api_key= "",
 )
 
 def generar_chistes(prompt):
