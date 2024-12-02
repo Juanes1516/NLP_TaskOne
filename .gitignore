@@ -1,2 +1,12 @@
 /task1/data/
 /task3/datasets/
+# Ignorar archivos de video
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.flv
+*.wmv
+*.webm
+*.m4v
+*.3gp
